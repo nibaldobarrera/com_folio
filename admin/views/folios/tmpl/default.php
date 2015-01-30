@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
-$listOrder  = '';
-$listDirn  = '';
+$listOrder = $this->escape($this->state->get('list.ordering'));
+$listDirn = $this->escape($this->state->get('list.direction'));
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_ folio&view=folios'); ?>" method="post" name="adminForm" id="adminForm">
 	<div id="j-main-container" class="span10">
