@@ -22,7 +22,7 @@ class FolioModelFolios extends JModelList
 		$query->select(
 				$this->getState(
 						'list.select',
-						'a.id, a.title',
+						'a.id, a.title,'.
 						'a.state, a.company'
 						)
 				);
