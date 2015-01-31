@@ -10,14 +10,17 @@ class FolioModelFolios extends JModelList
 					'id', 'a.id',
 					'title', 'a.title',
 					'state', 'a.state',
-					'company', 'a.company'
+					'company', 'a.company',
+					'publish_up', 'a.publish_up',
+					'publish_down', 'a.publish_down',
+					'ordering', 'a.ordering'
 			);
 		}
 		parent::__construct($config);
 	}
 	protected function populateState($ordering = null, $direction = null)
 	{
-		parent::populateState('a.title', 'asc');
+		parent::populateState('a.ordering', 'asc');
 	}
 	protected function getListQuery()
 	{
@@ -27,7 +30,8 @@ class FolioModelFolios extends JModelList
 				$this->getState(
 					'list.select',
 					'a.id, a.title,'.
-					'a.state, a.company'
+					'a.state, a.company,'.
+					'a.publish_up, a.publish_down, a.ordering'
 					)
 				);
 		$query->from($db->quoteName('#__folio').' AS a');
