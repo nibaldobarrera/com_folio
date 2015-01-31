@@ -26,6 +26,17 @@ class FolioViewFolios extends JViewLegacy
 		{
 			JToolbarHelper::editList('folio.edit');
 		}
+		if ($canDo->get('core.edit.state'))
+		{
+			JToolbarHelper::publish('folios.publish', 'JTOOLBAR_PUBLISH', true);
+			JToolbarHelper::unpublish('folios.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+			JToolbarHelper::archiveList('folios.archive');
+			JToolbarHelper::checkin('folios.checkin');
+		}
+		if ($canDo->get('core.delete'))
+		{
+			JToolBarHelper::deleteList('', 'folios.delete', 'JTOOLBAR_DELETE');
+		}
 		if ($canDo->get('core.admin'))
 		{
 			JToolbarHelper::preferences('com_folio');
