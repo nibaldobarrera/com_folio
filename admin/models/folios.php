@@ -20,6 +20,8 @@ class FolioModelFolios extends JModelList
 	}
 	protected function populateState($ordering = null, $direction = null)
 	{
+		$published = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
+		$this->setState('filter.state', $published);
 		parent::populateState('a.ordering', 'asc');
 	}
 	protected function getListQuery()
@@ -35,8 +37,21 @@ class FolioModelFolios extends JModelList
 					)
 				);
 		$query->from($db->quoteName('#__folio').' AS a');
+		$published = $this->getState('filter.state');
+		if (is_numeric($published))
+		{
+			$query->where('a.state = '.(int) $published);
+		} elseif ($published === '')
+		{
+			$query->where('(a.state IN (0, 1))');
+		}
+		// Add the list ordering clause
 		$orderCol = $this->state->get('list.ordering');
 		$orderDirn = $this->state->get('list.direction');
+		if ($orderCol == 'a.ordering')
+		{
+			$orderCol = 'a.title '.$orderDirn.', a.ordering';
+		}
 		$query->order($db->escape($orderCol.' '.$orderDirn));
 		return $query;
 	}

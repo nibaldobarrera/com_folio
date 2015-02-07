@@ -14,6 +14,7 @@ class FolioViewFolios extends JViewLegacy
 			return false;
 		}
 		$this->addToolbar();
+		$this->sidebar = JHtmlSidebar::render();
 		parent::display($tpl);
 	}
 	protected function addToolbar()
@@ -41,6 +42,13 @@ class FolioViewFolios extends JViewLegacy
 		{
 			JToolbarHelper::preferences('com_folio');
 		}
+		JHtmlSidebar::setAction('index.php?option=com_folio&view=folios');
+		JHtmlSidebar::addFilter(
+			JText::_('JOPTION_SELECT_PUBLISHED'),
+			'filter_state',
+			JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'),
+			'value', 'text', $this->state->get('filter.state'), true)
+		);
 	}
 	protected function getSortFields()
 	{
