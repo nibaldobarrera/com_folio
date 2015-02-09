@@ -13,7 +13,8 @@ class FolioModelFolios extends JModelList
 					'company', 'a.company',
 					'publish_up', 'a.publish_up',
 					'publish_down', 'a.publish_down',
-					'ordering', 'a.ordering'
+					'ordering', 'a.ordering',
+					'catid', 'a.catid', 'category_title'
 			);
 		}
 		parent::__construct($config);
@@ -33,7 +34,7 @@ class FolioModelFolios extends JModelList
 		$query->select(
 				$this->getState(
 					'list.select',
-					'a.id, a.title,'.
+					'a.id, a.title, a.catid,'.
 					'a.state, a.company,'.
 					'a.publish_up, a.publish_down, a.ordering'
 					)
@@ -47,6 +48,11 @@ class FolioModelFolios extends JModelList
 		{
 			$query->where('(a.state IN (0, 1))');
 		}
+
+		// Join over the categories.
+		$query->select('c.title AS category_title');
+		$query->join('LEFT', '#__categories AS c ON c.id = a.catid');
+
 		// Filter by search in title
 		$search = $this->getState('filter.search');
 		if (!empty($search))

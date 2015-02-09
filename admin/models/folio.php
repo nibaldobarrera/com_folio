@@ -11,7 +11,6 @@ class FolioModelFolio extends JModelAdmin
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
-
 	public function getForm($data = array(), $loadData = true)
 	{
 		$app = JFactory::getApplication();
@@ -39,4 +38,35 @@ class FolioModelFolio extends JModelAdmin
 	{
 		$table->title = htmlspecialchars_decode($table->title,ENT_QUOTES);
 	}
-}
+	protected function canDelete($record)
+	{
+		if (!empty($record->id))
+		{
+			if ($record->state != -2)
+			{
+				return;
+			}
+			$user = JFactory::getUser();
+			if ($record->catid)
+			{
+				return $user->authorise('core.delete', 'com_folio.category.'.(int) $record->catid);
+			}
+			else
+			{
+				return parent::canDelete($record);
+			}
+		}
+	}
+	protected function canEditState($record)
+	{
+		$user = JFactory::getUser();
+		if (!empty($record->catid))
+		{
+			return $user->authorise('core.edit.state', 'com_folio.category.'.(int) $record->catid);
+		}
+		else
+		{
+			return parent::canEditState($record);
+		}
+	}
+	}
