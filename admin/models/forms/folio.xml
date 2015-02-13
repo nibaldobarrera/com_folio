@@ -48,7 +48,7 @@
 		 <field
 		 	name="image"
 		 	type="media"
-		 	directory=""
+		 	directory="com_folio"
 		 	hide_none="1"
 		 	label="COM_FOLIO_FIELD_IMAGE_LABEL"
 		 	size="40"
