@@ -10,7 +10,7 @@ class FolioControllerFolio extends JControllerForm
 		if ($categoryId)
 		{
 			// If the category has been passed in the URL check it.
-			$allow = $user->authorise('core.create', $this->option . '.category.' . $categoryId);
+			$allow = $user->authorise('core.create', $this->option.'.category.'.$categoryId);
 		}
 		if ($allow === null)
 		{
@@ -34,7 +34,7 @@ class FolioControllerFolio extends JControllerForm
 		if ($categoryId)
 		{
 			// The category has been set. Check the category permissions.
-			return JFactory::getUser()->authorise('core.edit', $this->option . '.category.' . $categoryId);
+			return JFactory::getUser()->authorise('core.edit', $this->option.'.category.'.$categoryId);
 		}
 		else
 		{
