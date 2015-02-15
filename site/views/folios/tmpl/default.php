@@ -1,9 +1,5 @@
 <?php
-defined('_JEXEC') or die;
-$width=$this->params->get('targetwidth');
-$height=$this->params->get('targetheight');
-$imagewidth=$this->params->get('imagewidth');
-?>
+defined('_JEXEC') or die;?>
 
 <div class="mypreview">
 <?php foreach ($this->items as $item) : ?>
