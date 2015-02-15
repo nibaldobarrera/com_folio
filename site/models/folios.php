@@ -15,10 +15,17 @@ class FolioModelFolios extends JModelList
 				'url', 'a.url',
 				'phone', 'a.phone',
 				'description', 'a.description',
-				'ordering', 'a.ordering');
+				'ordering', 'a.ordering', 'a.catid');
 		}
 		parent::__construct($config);
 	}
+
+	protected function populateState($ordering = null, $direction = null)
+	{
+		$catid = JRequest::getInt('catid');
+		$this->setState('catid', $catid);
+	}
+	
 	protected function getListQuery() 
 	{
 		$db = $this->getDbo();
@@ -34,6 +41,10 @@ class FolioModelFolios extends JModelList
 		$query->from($db->quoteName('#__folio').' AS a');
 		$query->where('(a.state IN (0, 1))');
 		$query->where("a.image NOT LIKE ''");
+		if ($categoryId = $this->getState('catid'))
+		{
+			$query->where('a.catid = '.(int) $categoryId);
+		}
 		return $query;
 	}
 }
