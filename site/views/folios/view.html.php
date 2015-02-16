@@ -6,6 +6,9 @@ class FolioViewFolios extends JViewLegacy
 	public function display($tpl = null)
 	{
 		$this->items = $this->get('Items');
+		$app = JFactory::getApplication();
+		$params = $app->getParams();
+		$this->assignRef('params', $params);
 		if (count($errors = $this->get('Errors')))
 		{
 			JError::raiseError(500, implode("\n", $errors));
