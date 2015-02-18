@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<metadata>
+	<layout
+		title="com_folio_updfolios_view_default_title"
+		option="com_
+		folio_updfolios_view_default_option">
+		<message>
+			<![CDATA[com_folio_updfolios_view_default_desc]]>
+		</message>
+	</layout>
+</metadata>
