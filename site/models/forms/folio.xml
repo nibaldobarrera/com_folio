@@ -85,5 +85,12 @@
 		 	cols="30"
 		 	label="JGLOBAL_DESCRIPTION"
 		 	description="COM_FOLIO_FIELD_DESCRIPTION_DESC"/>
+		 <field
+		 	name="captcha"
+		 	type="captcha"
+		 	label="COM_FOLIO_CAPTCHA_LABEL"
+		 	description="COM_FOLIO_CAPTCHA_DESC"
+		 	validate="captcha"
+		 	namespace="contact" />
 	</fieldset>
 </form>
