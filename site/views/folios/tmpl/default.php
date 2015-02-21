@@ -44,7 +44,7 @@ $imagewidth=$this->params->get('imagewidth');
 			<strong><?php echo JText::_('COM_FOLIO_COMPANY');?></strong><?php echo $item->company; ?>
 		</div>
 		<div class="folio_element">
-			<strong><?php echo JText::_('COM_FOLIO_PHONE');?></strong><?php echo $item->phone; ?>
+			<strong><?php echo JText::_('COM_FOLIO_PHONE');?></strong><?php echo JHTML::_('content.prepare', ' '.$item->phone); ?>
 		</div>
 		<div class="folio_element">
 			<?php echo $item->description; ?>
