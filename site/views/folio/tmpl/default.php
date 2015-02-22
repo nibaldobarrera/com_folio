@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die; ?>
 <div class="mypreview">
-<?php foreach ($this->items as $item) : ?>
+	<?php foreach ($this->items as $item) : ?>
 	<div class="myfolio">
 		<div class="folio_title">
 			<?php echo $item->title; ?>
@@ -19,5 +19,17 @@ defined('_JEXEC') or die; ?>
 			<?php echo $item->description; ?>
 		</div>
 	</div>
-<?php endforeach; ?>
+	<?php endforeach; ?>
+</div>
+<div class="folio_element_full">
+	<?php
+	$item->text = $item->description;
+	$item->introtext = $item->description;
+	$options = array();
+	if (class_exists('plgContentKomento'))
+	{
+		require_once JPATH_ROOT . '/components/com_komento/bootstrap.php';
+		echo Komento::commentify('com_folio', $item, $options);
+	}
+	?>
 </div>

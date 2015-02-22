@@ -6,10 +6,10 @@ $imagewidth=$this->params->get('imagewidth');
 ?>
 
 <div class="mypreview">
-<?php foreach ($this->items as $item) : ?>
+	<?php foreach ($this->items as $item) : ?>
 	<div class="myfolio">
 		<div class="folio_title">
-			<a href="<?php echo JRoute::_('index.php?option=com_ folio&view=folio&id='.(int)$item->id); ?>">
+			<a href="<?php echo JRoute::_('index.php?option=com_folio&view=folio&id='.(int)$item->id); ?>">
 			<?php echo $item->title; ?></a>
 		</div>
 		<div class="folio_element">
@@ -49,6 +49,18 @@ $imagewidth=$this->params->get('imagewidth');
 		<div class="folio_element">
 			<?php echo $item->description; ?>
 		</div>
+		<div class="folio_element">
+			<?php
+			$item->text = $item->description;
+			$item->introtext = $item->description;
+			$options = array();
+			if (class_exists('plgContentKomento'))
+			{
+				require_once JPATH_ROOT . '/components/com_komento/bootstrap.php';
+				echo Komento::commentify('com_folio', $item, $options);
+			}
+			?>
+		</div>
 	</div>
-<?php endforeach; ?>
+	<?php endforeach; ?>
 </div>
